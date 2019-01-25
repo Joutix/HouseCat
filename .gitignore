@@ -1,0 +1,40 @@
+###########
+# GENERIC #
+###########
+
+# OS
+Thumbs.db
+
+# code
+bin/
+obj/
+*.suo
+*.csproj.user
+*.userprefs
+_ReSharper.*
+.vs/
+
+# NuGet
+#VS/packages/ # version the packages for command-line build, because ModuleWeaver references Cecil dlls (TODO: look into package restore or having a custom restore step in "build editor.bat")
+#packages/ # for UnityVS solution, which is inside the Unity folder
+
+# SwingSwing
+ignore/
+ignore.*
+
+# Visual Studio
+*.sln.DotSettings.user
+
+#################
+# UNITY PROJECT #
+#################
+
+# Unity
+/Library/
+/Temp/
+/UserSettings/
+
+# Unity-generated solutions
+/*.sln
+/*.csproj
+UnityVS\ Extensions.*
