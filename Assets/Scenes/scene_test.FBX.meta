@@ -77,6 +77,10 @@ ModelImporter:
     100142: game view
     100144: game view.Target
     100146: Point001
+    100148: game camera 2
+    100150: game camera 2.Target
+    100152: matchbox
+    100154: seat
     400000: Box061
     400002: Box062
     400004: Box063
@@ -151,7 +155,12 @@ ModelImporter:
     400142: game view
     400144: game view.Target
     400146: Point001
+    400148: game camera 2
+    400150: game camera 2.Target
+    400152: matchbox
+    400154: seat
     2000000: game view
+    2000002: game camera 2
     2100000: No Name
     2300000: Box061
     2300002: Box062
@@ -198,6 +207,8 @@ ModelImporter:
     2300084: Cylinder006
     2300086: Cylinder007
     2300088: Cylinder008
+    2300090: matchbox
+    2300092: seat
     3300000: Box061
     3300002: Box062
     3300004: Box063
@@ -243,6 +254,8 @@ ModelImporter:
     3300084: Cylinder006
     3300086: Cylinder007
     3300088: Cylinder008
+    3300090: matchbox
+    3300092: seat
     4300000: Box061
     4300002: Box062
     4300004: Box063
@@ -288,6 +301,8 @@ ModelImporter:
     4300084: Cylinder007
     4300086: Box083
     4300088: Box085
+    4300090: seat
+    4300092: matchbox
     10800000: Light001
     10800002: Light002
     10800004: Light003
