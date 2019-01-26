@@ -26,9 +26,15 @@ public class SetupScene : BaseMonoBehaviour
 				                          ? new Material(defaultMaterial) { mainTexture = tex }
 				                          : defaultMaterial;
 
-
 			var staticFlags = GameObjectUtility.GetStaticEditorFlags(renderer.gameObject);
-			staticFlags |= StaticEditorFlags.LightmapStatic;
+			if (renderer.gameObject.GetComponent<Pickable>())
+			{
+				staticFlags &= ~StaticEditorFlags.LightmapStatic;
+			}
+			else
+			{
+				staticFlags |= StaticEditorFlags.LightmapStatic;
+			}
 			GameObjectUtility.SetStaticEditorFlags(renderer.gameObject, staticFlags);
 		}
 	}

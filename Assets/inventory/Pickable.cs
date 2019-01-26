@@ -41,7 +41,7 @@ public class Pickable : BaseInteractable
 				gameObject.layer = Physics.IgnoreRaycastLayer;
 
 				initialPosition = transform.position;
-				initialScreenPosition = Camera.main.WorldToScreenPoint(initialPosition);
+				initialScreenPosition = camera.WorldToScreenPoint(initialPosition);
 				lastScreenPosition = initialScreenPosition;
 				break;
 			}
@@ -62,7 +62,7 @@ public class Pickable : BaseInteractable
 			return;
 		}
 
-		var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		var ray = camera.ScreenPointToRay(Input.mousePosition);
 		Vector3 finalTargetPos;
 		if (Physics.Raycast(ray, out var hit))
 		{

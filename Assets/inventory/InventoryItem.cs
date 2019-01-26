@@ -53,7 +53,7 @@ public class InventoryItem : BaseInteractable
 			return;
 		}
 
-		var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		var ray = camera.ScreenPointToRay(Input.mousePosition);
 		transform.position = ray.GetPoint(distanceFromCamera);
 	}
 }

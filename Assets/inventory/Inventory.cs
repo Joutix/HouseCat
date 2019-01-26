@@ -3,15 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : BaseMonoBehaviour
 {
 	public InventorySlot[] slots;
 	public List<InventoryItem> items = new List<InventoryItem>();
 	public InventoryItem selectedItem;
 
 	public static Inventory instance;
-	void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
+
 		instance = this;
 	}
 

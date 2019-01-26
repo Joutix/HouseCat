@@ -9,5 +9,7 @@ public class BaseMonoBehaviour : MonoBehaviour
 	protected virtual void Start() { }
 	protected virtual void Update() { }
 
+	protected Manager manager => Manager.instance;
+	protected new Camera camera => Manager.instance.mainCamera;
 	protected Inventory inventory => Inventory.instance;
 }
