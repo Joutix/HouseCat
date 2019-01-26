@@ -1016,16 +1016,18 @@ MonoBehaviour:
   collider: {fileID: 1430431015}
   director: {fileID: 0}
   state: 0
-  initialPosition: {x: 0, y: 0, z: 0}
-  initialScreenPosition: {x: 0, y: 0, z: 0}
   distanceFromCamera: 5
   distanceFromCollision: 1
   moveSpeed: 1
   debugHit: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  doubleSmooth: 0
   smoothSpeed: 0.1
   smoothSpeed1: 0.3
   smoothSpeed2: 0.3
+  targetPos: {x: 0, y: 0, z: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialScreenPosition: {x: 0, y: 0, z: 0}
+  lastScreenPosition: {x: 0, y: 0, z: 0}
   lastHit:
     collider: {fileID: 0}
     triangleIndex: 0
