@@ -22,10 +22,12 @@ public class Pickable : BaseInteractable
 	public float smoothSpeed1 = 0.1f;
 	public float smoothSpeed2 = 0.1f;
 
-	public Vector3 targetPos;
 	public Vector3 initialPosition;
 	public Vector3 initialScreenPosition;
 	public Vector3 lastScreenPosition;
+	public Vector3 finalTargetPos;
+	public Vector3 targetPos;
+	public Vector3 currentPos;
 
 	protected override void onInteract()
 	{
@@ -63,7 +65,7 @@ public class Pickable : BaseInteractable
 		}
 
 		var ray = camera.ScreenPointToRay(Input.mousePosition);
-		Vector3 finalTargetPos;
+		//Vector3 finalTargetPos;
 		if (Physics.Raycast(ray, out var hit))
 		{
 			finalTargetPos = hit.point - ray.direction * distanceFromCollision;
@@ -87,6 +89,7 @@ public class Pickable : BaseInteractable
 		{
 			transform.position += (finalTargetPos - transform.position) * smoothSpeed;
 		}
+		currentPos = transform.position;
 
 		//transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 		//transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, moveSpeed * Time.deltaTime);
