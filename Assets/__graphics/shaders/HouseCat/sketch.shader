@@ -13,6 +13,7 @@ Shader "HouseCat/sketch"
 
 		//DIFFUSE
 		_MainTex ("Main Texture", 2D) = "white" {}
+		_DiffTint ("Diffuse Tint", Color) = (0.7,0.8,1,1)
 	[TCP2Separator]
 
 		//TOONY COLORS RAMP
@@ -20,6 +21,13 @@ Shader "HouseCat/sketch"
 
 		_RampThreshold ("Ramp Threshold", Range(0,1)) = 0.5
 		_RampSmooth ("Ramp Smoothing", Range(0.001,1)) = 0.1
+	[TCP2Separator]
+
+	[TCP2HeaderHelp(RIM, Rim)]
+		//RIM LIGHT
+		_RimColor ("Rim Color", Color) = (0.8,0.8,0.8,0.6)
+		_RimMin ("Rim Min", Range(0,2)) = 0.5
+		_RimMax ("Rim Max", Range(0,2)) = 1.0
 	[TCP2Separator]
 
 	[TCP2HeaderHelp(SKETCH, Sketch)]
@@ -54,12 +62,17 @@ Shader "HouseCat/sketch"
 		sampler2D _MainTex;
 		sampler2D _NoTileNoiseTex;
 		float4 _NoTileNoiseTex_TexelSize;
+		fixed4 _RimColor;
+		fixed _RimMin;
+		fixed _RimMax;
+		float4 _RimDir;
 
 		#define UV_MAINTEX uv_MainTex
 
 		struct Input
 		{
 			half2 uv_MainTex;
+			float3 viewDir;
 			half4 sketchUv;
 		};
 	// No Tiling texture fetch function
@@ -103,6 +116,7 @@ Shader "HouseCat/sketch"
 		sampler2D _SketchTex;
 		float4 _SketchTex_ST;
 		half4 _SketchColor;
+		fixed4 _DiffTint;
 
 		// Instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
 		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -155,6 +169,8 @@ Shader "HouseCat/sketch"
 			half3 sketchRgb = lerp(_SketchColor, half3(1,1,1), sketch);
 			_SColor = lerp(_HColor, _SColor, _SColor.a);	//Shadows intensity through alpha
 			ramp = lerp(_SColor.rgb, _HColor.rgb, ramp);
+			fixed3 wrappedLight = saturate(_DiffTint.rgb + saturate(dot(IN_NORMAL, lightDir)));
+			ramp *= wrappedLight;
 			fixed4 c;
 			c.rgb = s.Albedo * lightColor.rgb * ramp;
 			c.a = s.Alpha;
@@ -218,6 +234,12 @@ Shader "HouseCat/sketch"
 			float screenRatio = _ScreenParams.y / _ScreenParams.x;
 			screenUV.y *= screenRatio;
 			o.ScreenUVs = screenUV;
+
+			//Rim
+			float3 viewDir = normalize(IN.viewDir);
+			half rim = 1.0f - saturate( dot(viewDir, o.Normal) );
+			rim = smoothstep(_RimMin, _RimMax, rim);
+			o.Emission += (_RimColor.rgb * rim) * _RimColor.a;
 		}
 
 		ENDCG
