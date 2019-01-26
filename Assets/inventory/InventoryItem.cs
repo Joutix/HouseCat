@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class InventoryItem : BaseInteractable
 {
+	public GameObject conditionBefore;
+	public GameObject conditionAfter;
 	public enum State
 	{
 		Idle,
@@ -17,8 +19,18 @@ public class InventoryItem : BaseInteractable
 	protected override void onInteract()
 	{
 		base.onInteract();
-		//Debug.Log($"onInteract {state} {name}");
 
+		if (conditionBefore && !conditionBefore.activeInHierarchy)
+		{
+			return;
+		}
+
+		if (conditionAfter)
+		{
+			conditionAfter.SetActive(true);
+		}
+
+		//Debug.Log($"onInteract {state} {name}");
 		switch (state)
 		{
 			case State.Idle:
