@@ -7,6 +7,7 @@ public class Ventilateur : MonoBehaviour
 	float venti = 0f;
 	float variableAdditionnel = 15f;
 	float variableSoustrait = 4f;
+	public GameObject conditionBefore;
 
 	// Update is called once per frame
 	void Update()
@@ -20,7 +21,11 @@ public class Ventilateur : MonoBehaviour
 
 	void OnMouseDown()
 			{
-					venti += variableAdditionnel;
+		if (conditionBefore && !conditionBefore.activeInHierarchy)
+		{
+			return;
+		}
+		venti += variableAdditionnel;
 					transform.rotation *= Quaternion.AngleAxis(venti, Vector3.up);
 			}
 }

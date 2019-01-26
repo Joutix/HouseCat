@@ -12,6 +12,7 @@ public class ScriptTableau : MonoBehaviour
 	public bool looping;
 	public PlayableDirector playableDirector;
 	public TimelineAsset[] listTimeline;
+	public GameObject conditionBefore;
 
 	Material material;
 	void Awake()
@@ -33,6 +34,10 @@ public class ScriptTableau : MonoBehaviour
 
 	void OnMouseDown()
 	{
+		if (conditionBefore && !conditionBefore.activeInHierarchy)
+		{
+			return;
+		}
 		if (nbclick >= listTimeline.Length)
 		{
 			if (looping==true)
