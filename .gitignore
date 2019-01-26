@@ -38,3 +38,6 @@ ignore.*
 /*.sln
 /*.csproj
 UnityVS\ Extensions.*
+
+
+Build/
