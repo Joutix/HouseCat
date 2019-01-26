@@ -81,6 +81,8 @@ ModelImporter:
     100150: game camera 2.Target
     100152: matchbox
     100154: seat
+    100156: gramophone
+    100158: gramophone cone
     400000: Box061
     400002: Box062
     400004: Box063
@@ -159,6 +161,8 @@ ModelImporter:
     400150: game camera 2.Target
     400152: matchbox
     400154: seat
+    400156: gramophone
+    400158: gramophone cone
     2000000: game view
     2000002: game camera 2
     2100000: No Name
@@ -209,6 +213,8 @@ ModelImporter:
     2300088: Cylinder008
     2300090: matchbox
     2300092: seat
+    2300094: gramophone
+    2300096: gramophone cone
     3300000: Box061
     3300002: Box062
     3300004: Box063
@@ -256,6 +262,8 @@ ModelImporter:
     3300088: Cylinder008
     3300090: matchbox
     3300092: seat
+    3300094: gramophone
+    3300096: gramophone cone
     4300000: Box061
     4300002: Box062
     4300004: Box063
@@ -303,6 +311,8 @@ ModelImporter:
     4300088: Box085
     4300090: seat
     4300092: matchbox
+    4300094: gramophone
+    4300096: gramophone cone
     10800000: Light001
     10800002: Light002
     10800004: Light003
