@@ -1,0 +1,379 @@
+fileFormatVersion: 2
+guid: 6dc16ab9d17c47e4eb342820ee0b51d6
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Box061
+    100002: Box062
+    100004: Box063
+    100006: Box064
+    100008: Box065
+    100010: Box066
+    100012: Box067
+    100014: Box068
+    100016: Box069
+    100018: Box070
+    100020: Box071
+    100022: Cylinder001
+    100024: Cylinder002
+    100026: Cylinder003
+    100028: Line001
+    100030: Line002
+    100032: Line003
+    100034: Line004
+    100036: Line005
+    100038: Line006
+    100040: Line007
+    100042: //RootNode
+    100044: board game
+    100046: bowls
+    100048: Box072
+    100050: Box073
+    100052: Box074
+    100054: Box075
+    100056: Box076
+    100058: Box078
+    100060: Box079
+    100062: Box080
+    100064: Box081
+    100066: Box082
+    100068: Box083
+    100070: Box084
+    100072: Box085
+    100074: Box086
+    100076: Box087
+    100078: Box088
+    100080: Box089
+    100082: Box090
+    100084: Box091
+    100086: Box092
+    100088: carpet
+    100090: ceiling fan
+    100092: chimney round frame
+    100094: chimney square frame
+    100096: clock
+    100098: Cylinder004
+    100100: Cylinder006
+    100102: Cylinder007
+    100104: Cylinder008
+    100106: door
+    100108: fireplace
+    100110: light
+    100112: Light001
+    100114: Light002
+    100116: Light003
+    100118: living room
+    100120: magazine
+    100122: piano
+    100124: piano bench
+    100126: plant
+    100128: remote
+    100130: seat 1
+    100132: seat 2
+    100134: slippers
+    100136: table
+    100138: wall frame
+    100140: window
+    100142: game view
+    100144: game view.Target
+    100146: Point001
+    400000: Box061
+    400002: Box062
+    400004: Box063
+    400006: Box064
+    400008: Box065
+    400010: Box066
+    400012: Box067
+    400014: Box068
+    400016: Box069
+    400018: Box070
+    400020: Box071
+    400022: Cylinder001
+    400024: Cylinder002
+    400026: Cylinder003
+    400028: Line001
+    400030: Line002
+    400032: Line003
+    400034: Line004
+    400036: Line005
+    400038: Line006
+    400040: Line007
+    400042: //RootNode
+    400044: board game
+    400046: bowls
+    400048: Box072
+    400050: Box073
+    400052: Box074
+    400054: Box075
+    400056: Box076
+    400058: Box078
+    400060: Box079
+    400062: Box080
+    400064: Box081
+    400066: Box082
+    400068: Box083
+    400070: Box084
+    400072: Box085
+    400074: Box086
+    400076: Box087
+    400078: Box088
+    400080: Box089
+    400082: Box090
+    400084: Box091
+    400086: Box092
+    400088: carpet
+    400090: ceiling fan
+    400092: chimney round frame
+    400094: chimney square frame
+    400096: clock
+    400098: Cylinder004
+    400100: Cylinder006
+    400102: Cylinder007
+    400104: Cylinder008
+    400106: door
+    400108: fireplace
+    400110: light
+    400112: Light001
+    400114: Light002
+    400116: Light003
+    400118: living room
+    400120: magazine
+    400122: piano
+    400124: piano bench
+    400126: plant
+    400128: remote
+    400130: seat 1
+    400132: seat 2
+    400134: slippers
+    400136: table
+    400138: wall frame
+    400140: window
+    400142: game view
+    400144: game view.Target
+    400146: Point001
+    2000000: game view
+    2100000: No Name
+    2300000: Box061
+    2300002: Box062
+    2300004: Box063
+    2300006: Box064
+    2300008: Box065
+    2300010: Box066
+    2300012: Box067
+    2300014: Box068
+    2300016: Box069
+    2300018: Box070
+    2300020: Box071
+    2300022: Cylinder001
+    2300024: Cylinder002
+    2300026: Cylinder003
+    2300028: Line001
+    2300030: Line002
+    2300032: Line003
+    2300034: Line004
+    2300036: Line005
+    2300038: Line006
+    2300040: Line007
+    2300042: Box072
+    2300044: Box073
+    2300046: Box074
+    2300048: Box075
+    2300050: Box076
+    2300052: Box078
+    2300054: Box079
+    2300056: Box080
+    2300058: Box081
+    2300060: Box082
+    2300062: Box083
+    2300064: Box084
+    2300066: Box085
+    2300068: Box086
+    2300070: Box087
+    2300072: Box088
+    2300074: Box089
+    2300076: Box090
+    2300078: Box091
+    2300080: Box092
+    2300082: Cylinder004
+    2300084: Cylinder006
+    2300086: Cylinder007
+    2300088: Cylinder008
+    3300000: Box061
+    3300002: Box062
+    3300004: Box063
+    3300006: Box064
+    3300008: Box065
+    3300010: Box066
+    3300012: Box067
+    3300014: Box068
+    3300016: Box069
+    3300018: Box070
+    3300020: Box071
+    3300022: Cylinder001
+    3300024: Cylinder002
+    3300026: Cylinder003
+    3300028: Line001
+    3300030: Line002
+    3300032: Line003
+    3300034: Line004
+    3300036: Line005
+    3300038: Line006
+    3300040: Line007
+    3300042: Box072
+    3300044: Box073
+    3300046: Box074
+    3300048: Box075
+    3300050: Box076
+    3300052: Box078
+    3300054: Box079
+    3300056: Box080
+    3300058: Box081
+    3300060: Box082
+    3300062: Box083
+    3300064: Box084
+    3300066: Box085
+    3300068: Box086
+    3300070: Box087
+    3300072: Box088
+    3300074: Box089
+    3300076: Box090
+    3300078: Box091
+    3300080: Box092
+    3300082: Cylinder004
+    3300084: Cylinder006
+    3300086: Cylinder007
+    3300088: Cylinder008
+    4300000: Box061
+    4300002: Box062
+    4300004: Box063
+    4300006: Line001
+    4300008: Box064
+    4300010: Box065
+    4300012: Box066
+    4300014: Box067
+    4300016: Box068
+    4300018: Box069
+    4300020: Line002
+    4300022: Line003
+    4300024: Line004
+    4300026: Line005
+    4300028: Line006
+    4300030: Line007
+    4300032: Box070
+    4300034: Box071
+    4300036: Cylinder001
+    4300038: Cylinder002
+    4300040: Cylinder003
+    4300042: Box079
+    4300044: Box080
+    4300046: Box081
+    4300048: Box084
+    4300050: Box086
+    4300052: Cylinder008
+    4300054: Box088
+    4300056: Box089
+    4300058: Box090
+    4300060: Box091
+    4300062: Box087
+    4300064: Box078
+    4300066: Box076
+    4300068: Box092
+    4300070: Cylinder006
+    4300072: Box082
+    4300074: Cylinder004
+    4300076: Box072
+    4300078: Box073
+    4300080: Box074
+    4300082: Box075
+    4300084: Cylinder007
+    4300086: Box083
+    4300088: Box085
+    10800000: Light001
+    10800002: Light002
+    10800004: Light003
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 3
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
