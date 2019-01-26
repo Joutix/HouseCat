@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Clips:
   - m_Start: 0
     m_ClipIn: 0
-    m_Asset: {fileID: 114852013743740336}
+    m_Asset: {fileID: 114534597921602662}
     m_Duration: 1.3844897959183673
     m_TimeScale: 1
     m_ParentTrack: {fileID: 114085665773753364}
@@ -346,7 +346,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: 333916__thearxx08__cat-meowing
+    m_DisplayName: chat
     m_Version: 1
   m_Version: 2
 --- !u!114 &114239261871140840
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
---- !u!114 &114852013743740336
+--- !u!114 &114534597921602662
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
