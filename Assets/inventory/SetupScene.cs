@@ -8,16 +8,28 @@ using UnityEditor;
 
 public class SetupScene : BaseMonoBehaviour
 {
+	public Material defaultMaterial;
+
 #if UNITY_EDITOR
-	[ContextMenu("Create Colliders")]
-	protected void createColliders()
+	[ContextMenu("Setup Scene")]
+	protected void setupScene()
 	{
-		foreach (var renderer in GetComponentsInChildren(typeof(MeshRenderer)))
+		foreach (var renderer in GetComponentsInChildren<MeshRenderer>())
 		{
 			if (!renderer.GetComponent<MeshCollider>())
 			{
 				Undo.AddComponent<MeshCollider>(renderer.gameObject);
 			}
+
+			var tex = renderer.sharedMaterial.mainTexture;
+			renderer.sharedMaterial = tex
+				                          ? new Material(defaultMaterial) { mainTexture = tex }
+				                          : defaultMaterial;
+
+
+			var staticFlags = GameObjectUtility.GetStaticEditorFlags(renderer.gameObject);
+			staticFlags |= StaticEditorFlags.LightmapStatic;
+			GameObjectUtility.SetStaticEditorFlags(renderer.gameObject, staticFlags);
 		}
 	}
 #endif
