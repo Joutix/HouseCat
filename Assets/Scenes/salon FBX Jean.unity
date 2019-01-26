@@ -162,12 +162,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &99546464 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2000002, guid: 6dc16ab9d17c47e4eb342820ee0b51d6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1936144013}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &842077219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -283,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d73fa667770fc498239bc6e204c11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 99546464}
+  mainCamera: {fileID: 1980660437}
 --- !u!4 &1383729076
 Transform:
   m_ObjectHideFlags: 0
@@ -520,7 +514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100020, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100022, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2010,10 +2004,48 @@ MonoBehaviour:
   smoothSpeed: 0.1
   smoothSpeed1: 0.3
   smoothSpeed2: 0.3
-  targetPos: {x: 0, y: 0, z: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialScreenPosition: {x: 0, y: 0, z: 0}
   lastScreenPosition: {x: 0, y: 0, z: 0}
+  finalTargetPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: 0, y: 0, z: 0}
+  currentPos: {x: 0, y: 0, z: 0}
+  lastHit:
+    collider: {fileID: 0}
+    triangleIndex: 0
+    barycentricCoordinate: {x: 0, y: 0, z: 0}
+    textureCoord: {x: 0, y: 0}
+    point: {x: 0, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: 0}
+--- !u!114 &1936144238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936144022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1226d24772d1cc84e9f92f56976d4766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collider: {fileID: 1936144067}
+  director: {fileID: 0}
+  state: 0
+  distanceFromCamera: 5
+  distanceFromCollision: 1
+  moveSpeed: 1
+  debugHit: 0
+  doubleSmooth: 1
+  smoothSpeed: 0.1
+  smoothSpeed1: 0.3
+  smoothSpeed2: 0.3
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialScreenPosition: {x: 0, y: 0, z: 0}
+  lastScreenPosition: {x: 0, y: 0, z: 0}
+  finalTargetPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: 0, y: 0, z: 0}
+  currentPos: {x: 0, y: 0, z: 0}
   lastHit:
     collider: {fileID: 0}
     triangleIndex: 0
