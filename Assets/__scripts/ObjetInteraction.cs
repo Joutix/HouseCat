@@ -48,7 +48,10 @@ public class ObjetInteraction : BaseInteractable
 		}
 
 		active = true;
-		director.Play();
+		if (director)
+		{
+			director.Play();
+		}
 		if (conditionAfter)
 		{
 			conditionAfter.SetActive(true);
