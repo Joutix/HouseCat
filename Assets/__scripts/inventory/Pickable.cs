@@ -243,13 +243,19 @@ public class Pickable : BaseInteractable
 		Vector3 currentPos = transform.position;
 		currentPos = Util.smooth(currentPos, initialPosition, smoothSpeed);
 
-		if (Vector3.Distance(currentPos, initialPosition) < 0.1f)
+		Quaternion currentRot = transform.rotation;
+		currentRot = Quaternion.Slerp(currentRot, initialRotation, smoothSpeed);
+
+		if (Vector3.Distance(currentPos, initialPosition) < 0.1f &&
+		    Quaternion.Angle(currentRot, initialRotation) < 1f)
 		{
 			currentPos = initialPosition;
+			currentRot = initialRotation;
 			setState(State.Idle);
 		}
 
 		transform.position = currentPos;
+		transform.rotation = currentRot;
 	}
 
 
