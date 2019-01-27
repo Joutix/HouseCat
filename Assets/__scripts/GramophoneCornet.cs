@@ -20,6 +20,16 @@ public class GramophoneCornet : BaseInteractable
 		intermediate = 0;
 	}
 
+
+	Quaternion initialRotation;
+
+	protected override void Awake()
+	{
+		base.Awake();
+
+		initialRotation = transform.localRotation;
+	}
+
 	protected override void Update()
 	{
 		base.Update();
@@ -32,14 +42,12 @@ public class GramophoneCornet : BaseInteractable
 		const float target = 1;
 		intermediate += (target - intermediate) * smoothSpeed1;
 		current += (intermediate - current) * smoothSpeed2;
-		if (Mathf.Abs(current - target) < 0.01f)
+		if (Mathf.Abs(current - target) < 0.003f)
 		{
 			turn = false;
 			current = target;
 		}
 
-		var euler = transform.localEulerAngles;
-		euler.z = current * 360;
-		transform.localEulerAngles = euler;
+		transform.localRotation = initialRotation * Quaternion.AngleAxis(-current * 360, Vector3.up);
 	}
 }
