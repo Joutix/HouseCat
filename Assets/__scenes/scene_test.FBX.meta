@@ -184,6 +184,9 @@ ModelImporter:
     100356: wine glass full pivot
     100358: Light004
     100360: vinyl
+    100362: Box106
+    100364: brush
+    100366: brush001
     400000: Box061
     400002: Box062
     400004: Box063
@@ -365,6 +368,9 @@ ModelImporter:
     400356: wine glass full pivot
     400358: Light004
     400360: vinyl
+    400362: Box106
+    400364: brush
+    400366: brush001
     2000000: game view
     2000002: game camera 2
     2100000: No Name
@@ -390,6 +396,7 @@ ModelImporter:
     2100040: vinyl
     2100042: pine cone
     2100044: skippers
+    2100046: power cat
     2300000: Box061
     2300002: Box062
     2300004: Box063
@@ -515,6 +522,9 @@ ModelImporter:
     2300244: ceiling fan
     2300246: plant
     2300248: vinyl
+    2300250: Box106
+    2300252: brush
+    2300254: brush001
     3300000: Box061
     3300002: Box062
     3300004: Box063
@@ -640,6 +650,9 @@ ModelImporter:
     3300244: ceiling fan
     3300246: plant
     3300248: vinyl
+    3300250: Box106
+    3300252: brush
+    3300254: brush001
     4300000: Box061
     4300002: Box062
     4300004: Box063
@@ -765,6 +778,9 @@ ModelImporter:
     4300244: vinyl
     4300246: ceiling fan
     4300248: plant
+    4300250: Box106
+    4300252: brush
+    4300254: brush001
     10800000: Light001
     10800002: Light002
     10800004: Light003
