@@ -9,6 +9,7 @@ public class Pickable : BaseInteractable
 	{
 		Idle,
 		Dragging,
+		GoingBack,
 	}
 	public State state;
 
@@ -17,18 +18,26 @@ public class Pickable : BaseInteractable
 	public float moveSpeed = 1;
 	public bool debugHit;
 
+	public float maxDragTime = 3;
+
 	public bool doubleSmooth;
 	public float smoothSpeed = 0.1f;
 	public float smoothSpeed1 = 0.1f;
 	public float smoothSpeed2 = 0.1f;
 
 	public Vector3 initialPosition;
-	public Vector3 initialScreenPosition;
 	public Vector3 lastScreenPosition;
-	public Vector3 finalTargetPos;
 	public Vector3 targetPos;
-	public Vector3 currentPos;
 
+	[Serializable]
+	public struct DebugInfo
+	{
+		public Vector3 finalTargetPos;
+		public Vector3 currentPos;
+	}
+	public DebugInfo debug;
+
+	float timer;
 	protected override void onInteract()
 	{
 		base.onInteract();
@@ -38,19 +47,50 @@ public class Pickable : BaseInteractable
 		{
 			case State.Idle:
 			{
-				state = State.Dragging;
+				setState(State.Dragging);
+				break;
+			}
+
+			case State.Dragging:
+			case State.GoingBack:
+			{
+				break;
+			}
+
+			default: throw new ArgumentOutOfRangeException();
+		}
+	}
+
+	void setState( State newState )
+	{
+		timer = 0;
+
+		state = newState;
+		switch (newState)
+		{
+			case State.Idle:
+			{
+				collider.enabled = true;
+				gameObject.layer = 0;
+				break;
+			}
+
+			case State.Dragging:
+			{
 				collider.enabled = false;
 				gameObject.layer = Physics.IgnoreRaycastLayer;
 
 				initialPosition = transform.position;
-				initialScreenPosition = camera.WorldToScreenPoint(initialPosition);
-				lastScreenPosition = initialScreenPosition;
+				lastScreenPosition = camera.WorldToScreenPoint(initialPosition);
+				targetPos = transform.position;
 				break;
 			}
-			case State.Dragging:
+
+			case State.GoingBack:
 			{
 				break;
 			}
+
 			default: throw new ArgumentOutOfRangeException();
 		}
 	}
@@ -59,13 +99,42 @@ public class Pickable : BaseInteractable
 	{
 		base.Update();
 
-		if (state != State.Dragging)
-		{
-			return;
-		}
+		timer += Time.deltaTime;
 
+		switch (state)
+		{
+			case State.Idle:
+			{
+				break;
+			}
+
+			case State.Dragging:
+			{
+				if (timer > maxDragTime)
+				{
+					setState(State.GoingBack);
+					return;
+				}
+				updateDragging();
+				break;
+			}
+
+			case State.GoingBack:
+			{
+				updateGoingBack();
+				break;
+			}
+
+			default: throw new ArgumentOutOfRangeException();
+		}
+	}
+
+	void updateDragging()
+	{
+		Vector3 currentPos = transform.position;
+
+		Vector3 finalTargetPos;
 		var ray = camera.ScreenPointToRay(Input.mousePosition);
-		//Vector3 finalTargetPos;
 		if (Physics.Raycast(ray, out var hit))
 		{
 			finalTargetPos = hit.point - ray.direction * distanceFromCollision;
@@ -76,23 +145,19 @@ public class Pickable : BaseInteractable
 		}
 		else
 		{
-			finalTargetPos = ray.GetPoint(initialScreenPosition.z);
+			finalTargetPos = ray.GetPoint(lastScreenPosition.z);
 		}
+
+		currentPos = Util.smooth(currentPos, ref targetPos, finalTargetPos,
+		                         doubleSmooth, smoothSpeed, smoothSpeed1, smoothSpeed2);
+
+		lastScreenPosition = camera.WorldToScreenPoint(currentPos);
+		transform.position = currentPos;
+
+
 		lastHit = new SerializableRaycastHit(hit);
-
-		if (doubleSmooth)
-		{
-			targetPos += (finalTargetPos - targetPos) * smoothSpeed1;
-			transform.position += (targetPos - transform.position) * smoothSpeed2;
-		}
-		else
-		{
-			transform.position += (finalTargetPos - transform.position) * smoothSpeed;
-		}
-		currentPos = transform.position;
-
-		//transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-		//transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, moveSpeed * Time.deltaTime);
+		debug.finalTargetPos = finalTargetPos;
+		debug.currentPos = currentPos;
 	}
 
 	public SerializableRaycastHit lastHit;
@@ -106,4 +171,39 @@ public class Pickable : BaseInteractable
 		var hit = lastHit;
 		Debug.DrawLine(hit.point, hit.normal, Color.red, 0.1f);
 	}*/
+
+
+	void updateGoingBack()
+	{
+		Vector3 currentPos = transform.position;
+		currentPos = Util.smooth(currentPos, initialPosition, smoothSpeed);
+
+		if (Vector3.Distance(currentPos, initialPosition) < 0.1f)
+		{
+			currentPos = initialPosition;
+			setState(State.Idle);
+		}
+
+		transform.position = currentPos;
+	}
+}
+
+public static class Util
+{
+	public static Vector3 smooth( Vector3 current, Vector3 target, float smooth )
+	{
+		return current + (target - current) * smooth;
+	}
+	public static Vector3 smooth( Vector3 current, ref Vector3 midTarget, Vector3 finalTarget, float smooth1, float smooth2 )
+	{
+		midTarget = smooth(midTarget, finalTarget, smooth1);
+		return smooth(current, midTarget, smooth2);
+	}
+	public static Vector3 smooth( Vector3 current, ref Vector3 midTarget, Vector3 finalTarget,
+	                              bool doubleSmooth, float smooth, float smooth1, float smooth2 )
+	{
+		return doubleSmooth
+			       ? Util.smooth(current, ref midTarget, finalTarget, smooth1, smooth2)
+			       : Util.smooth(current, finalTarget, smooth);
+	}
 }
