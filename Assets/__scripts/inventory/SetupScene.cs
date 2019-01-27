@@ -16,13 +16,15 @@ public class SetupScene : BaseMonoBehaviour
 	{
 		foreach (var renderer in GetComponentsInChildren<MeshRenderer>())
 		{
+			var go = renderer.gameObject;
+
 			if (!renderer.GetComponent<MeshCollider>())
 			{
-				Undo.AddComponent<MeshCollider>(renderer.gameObject);
+				Undo.AddComponent<MeshCollider>(go);
 			}
 			if (!renderer.GetComponent<ColliderProxy>())
 			{
-				Undo.AddComponent<ColliderProxy>(renderer.gameObject);
+				Undo.AddComponent<ColliderProxy>(go);
 			}
 
 
@@ -32,8 +34,10 @@ public class SetupScene : BaseMonoBehaviour
 				                          : defaultMaterial;
 
 
-			var staticFlags = GameObjectUtility.GetStaticEditorFlags(renderer.gameObject);
-			if (renderer.gameObject.GetComponent<Pickable>())
+			var staticFlags = GameObjectUtility.GetStaticEditorFlags(go);
+			if (go.GetComponent<Pickable>() ||
+			    go.GetComponent<ObjetInteraction>() ||
+			    go.GetComponent<Animator>())
 			{
 				staticFlags &= ~StaticEditorFlags.LightmapStatic;
 			}
@@ -41,7 +45,7 @@ public class SetupScene : BaseMonoBehaviour
 			{
 				staticFlags |= StaticEditorFlags.LightmapStatic;
 			}
-			GameObjectUtility.SetStaticEditorFlags(renderer.gameObject, staticFlags);
+			GameObjectUtility.SetStaticEditorFlags(go, staticFlags);
 		}
 	}
 #endif
