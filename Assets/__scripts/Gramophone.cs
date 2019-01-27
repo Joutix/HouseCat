@@ -14,15 +14,12 @@ public class Gramophone : MonoBehaviour
 	int i = -1;
 	int musicPrecedent=-1;
 
-	float variableAdditionnel = 0.10f;
-	float variableSoustrait = 0.10f;
+	public float variableAdditionnel = 0.10f;
+	public float variableSoustrait = 0.10f;
 
 	public GameObject conditionBefore;
 	Material material;
 
-	float venti = 0f;
-	//float varAdditionnel = 0.10f;
-	//float varSoustrait = 0.10f;
 
 	void Awake()
 	{
@@ -44,19 +41,9 @@ public class Gramophone : MonoBehaviour
 
 	void Update()
 	{
-		if (source.isPlaying)
-		{
-			venti = 0.5f;
-			transform.rotation *= Quaternion.AngleAxis(venti, Vector3.up);
-		}
 		if (source.pitch >= 1)
 		{
 			source.pitch -= (variableSoustrait * Time.deltaTime); 
-		}
-		if(transform.rotation.y > 1)
-		{
-			venti -= 5f;
-			transform.rotation *= Quaternion.AngleAxis(venti, Vector3.up);
 		}
 	}
 
@@ -78,16 +65,10 @@ public class Gramophone : MonoBehaviour
 			sound = soundtrack[i];
 			source.clip = sound;
 			source.Play();
-			venti = 0.10f;
-			transform.rotation *= Quaternion.AngleAxis(venti, Vector3.up);
 		}
 		else
 		{
 			source.pitch += (variableAdditionnel);
-			if(transform.rotation.y < 0.50) { 
-			venti += variableAdditionnel;
-			transform.rotation *= Quaternion.AngleAxis(venti, Vector3.up);
-			}
 		}
 
 			}

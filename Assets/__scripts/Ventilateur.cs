@@ -2,30 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ventilateur : MonoBehaviour
+public class Ventilateur : BaseInteractable
 {
-	float venti = 0f;
-	float variableAdditionnel = 15f;
-	float variableSoustrait = 4f;
 	public GameObject conditionBefore;
 
-	// Update is called once per frame
-	void Update()
-	{
-		if (venti > 0)
-		{
-			venti -= (variableSoustrait * Time.deltaTime);
-			transform.rotation *= Quaternion.AngleAxis(venti, Vector3.up);
-		}
-	}
+	public float maxSpeed = 360;
+	public float speedImpulse = 90;
+	//public float acceleration = 90;
+	public float deceleration = 30;
+	float speed;
 
-	void OnMouseDown()
-			{
+	protected override void onInteract()
+	{
+		base.onInteract();
+
 		if (conditionBefore && !conditionBefore.activeInHierarchy)
 		{
 			return;
 		}
-		venti += variableAdditionnel;
-					transform.rotation *= Quaternion.AngleAxis(venti, Vector3.up);
-			}
+
+		speed += speedImpulse;
+		speed = Mathf.Min(speed, maxSpeed);
+	}
+
+	protected override void Update()
+	{
+		base.Update();
+
+		if (speed > 0)
+		{
+			//transform.rotation *= Quaternion.AngleAxis(venti, Vector3.up);
+			float dt = Time.deltaTime;
+			transform.Rotate(Vector3.forward, speed * dt, Space.Self);
+			speed -= (deceleration * dt);
+		}
+	}
 }
