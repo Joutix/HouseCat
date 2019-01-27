@@ -166,6 +166,9 @@ Shader "HouseCat/sketch"
 			#define SKETCH_RGB	sketchRgb
 			fixed sketch = tex2DnoTile(_SketchTex, s.ScreenUVs).a;
 			sketch = lerp(sketch, 1, ramp);	//Regular sketch overlay
+
+			//sketch *= 0.1;
+
 			half3 sketchRgb = lerp(_SketchColor, half3(1,1,1), sketch);
 			_SColor = lerp(_HColor, _SColor, _SColor.a);	//Shadows intensity through alpha
 			ramp = lerp(_SColor.rgb, _HColor.rgb, ramp);
