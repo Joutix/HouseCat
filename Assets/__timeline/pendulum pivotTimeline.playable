@@ -696,8 +696,8 @@ MonoBehaviour:
   m_Version: 2
   m_OpenClipPreExtrapolation: 1
   m_OpenClipPostExtrapolation: 1
-  m_OpenClipOffsetPosition: {x: 0.064784706, y: -0.009291438, z: 1.1663636}
-  m_OpenClipOffsetEulerAngles: {x: 1.2121905, y: -0.00000012951213, z: -0.0000051237894}
+  m_OpenClipOffsetPosition: {x: 0.143847, y: -0.01591109, z: 0.6397024}
+  m_OpenClipOffsetEulerAngles: {x: 1.17, y: -15.195, z: 1.684}
   m_OpenClipTimeOffset: 0
   m_OpenClipRemoveOffset: 0
   m_MatchTargetFields: 63
