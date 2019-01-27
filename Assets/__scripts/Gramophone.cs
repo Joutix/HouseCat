@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gramophone : MonoBehaviour
+public class Gramophone : BaseInteractable
 {
-	public Color highlightColor = Color.green;
-	Color defaultColor;
 	public AudioClip[] soundtrack;
 	AudioClip sound;
 	int tempsMusic;
@@ -18,46 +16,30 @@ public class Gramophone : MonoBehaviour
 	public float variableSoustrait = 0.10f;
 
 	public GameObject conditionBefore;
-	Material material;
 
-
-	void Awake()
+	protected override void Update()
 	{
+		base.Update();
 
-		material = GetComponent<Renderer>().material;
-		defaultColor = material.color;
-	}
-
-	void OnMouseEnter()
-	{
-		material.color = highlightColor;
-	}
-
-	void OnMouseExit()
-	{
-		material.color = defaultColor;
-	}
-
-
-	void Update()
-	{
 		if (source.pitch >= 1)
 		{
 			source.pitch -= (variableSoustrait * Time.deltaTime); 
 		}
 	}
 
-	void OnMouseDown()
+	protected override void onInteract( Collider _collider )
 	{
+		base.onInteract(_collider);
 
 		if (conditionBefore && !conditionBefore.activeInHierarchy)
 		{
 			return;
 		}
+
 		if (i == -1 || !source.isPlaying)
 		{
 			i = Random.Range(0, soundtrack.Length);
-			while(i == musicPrecedent)
+			while (i == musicPrecedent)
 			{
 				i = Random.Range(0, soundtrack.Length);
 			}
@@ -70,6 +52,5 @@ public class Gramophone : MonoBehaviour
 		{
 			source.pitch += (variableAdditionnel);
 		}
-
-			}
+	}
 }
