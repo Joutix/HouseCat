@@ -147,6 +147,41 @@ ModelImporter:
     100282: wine bottle
     100284: wine glass empty
     100286: wine glass full
+    100288: book pivot
+    100290: book support pivot
+    100292: bowls pivot
+    100294: box book 1 pivot
+    100296: box book 2 pivot
+    100298: box book 3 pivot
+    100300: box book 4 pivot
+    100302: box book 5 pivot
+    100304: cat food pivot
+    100306: cat food pivot 1
+    100308: chimney round frame pivot
+    100310: chimney square frame pivot
+    100312: door left pivot
+    100314: door right pivot
+    100316: drawer pivot
+    100318: gramophone cone pivot
+    100320: light pivot
+    100322: match 1 pivot
+    100324: match 2 pivot
+    100326: matchbox pivot
+    100328: needles pivot
+    100330: pendulum pivot
+    100332: piano door pivot
+    100334: pine cone 1 pivot
+    100336: pine cone 2 pivot
+    100338: pine wood bowl pivot
+    100340: switch pivot
+    100342: vinyl 1 pivot
+    100344: vinyl 2 pivot
+    100346: wall frame 1 pivot
+    100348: wall frame 2 pivot
+    100350: wall frame 3 pivot
+    100352: wine bottle pivot
+    100354: wine glass empty pivot
+    100356: wine glass full pivot
     400000: Box061
     400002: Box062
     400004: Box063
@@ -291,6 +326,41 @@ ModelImporter:
     400282: wine bottle
     400284: wine glass empty
     400286: wine glass full
+    400288: book pivot
+    400290: book support pivot
+    400292: bowls pivot
+    400294: box book 1 pivot
+    400296: box book 2 pivot
+    400298: box book 3 pivot
+    400300: box book 4 pivot
+    400302: box book 5 pivot
+    400304: cat food pivot
+    400306: cat food pivot 1
+    400308: chimney round frame pivot
+    400310: chimney square frame pivot
+    400312: door left pivot
+    400314: door right pivot
+    400316: drawer pivot
+    400318: gramophone cone pivot
+    400320: light pivot
+    400322: match 1 pivot
+    400324: match 2 pivot
+    400326: matchbox pivot
+    400328: needles pivot
+    400330: pendulum pivot
+    400332: piano door pivot
+    400334: pine cone 1 pivot
+    400336: pine cone 2 pivot
+    400338: pine wood bowl pivot
+    400340: switch pivot
+    400342: vinyl 1 pivot
+    400344: vinyl 2 pivot
+    400346: wall frame 1 pivot
+    400348: wall frame 2 pivot
+    400350: wall frame 3 pivot
+    400352: wine bottle pivot
+    400354: wine glass empty pivot
+    400356: wine glass full pivot
     2000000: game view
     2000002: game camera 2
     2100000: No Name
