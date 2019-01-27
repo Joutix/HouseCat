@@ -281,7 +281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &630032575
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -975,7 +975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100010, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1541,6 +1541,34 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 77f2f3c267abae244bfa4931a47f5e73, type: 2}
+    - target: {fileID: 400008, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.368
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.348
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.016
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.081600115
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9966652
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -9.361
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
 --- !u!1 &1936144014 stripped
@@ -2535,7 +2563,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
 --- !u!1 &1980660435
 GameObject:
   m_ObjectHideFlags: 0

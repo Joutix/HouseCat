@@ -66,7 +66,16 @@ public class Pickable : BaseInteractable
 	void enableCollider( bool _enabled, bool _dynamic = false )
 	{
 		collider.enabled = _enabled;
-		rigidbody.isKinematic = !(_enabled && _dynamic);
+		if (_enabled && _dynamic)
+		{
+			rigidbody.isKinematic = false;
+			rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+		}
+		else
+		{
+			rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
+			rigidbody.isKinematic = true;
+		}
 		gameObject.layer = _enabled ? 0 : Physics.IgnoreRaycastLayer;
 	}
 
