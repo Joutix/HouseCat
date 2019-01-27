@@ -21,8 +21,8 @@ public class Gramophone : MonoBehaviour
 	Material material;
 
 	float venti = 0f;
-	float varAdditionnel = 0.10f;
-	float varSoustrait = 0.10f;
+	//float varAdditionnel = 0.10f;
+	//float varSoustrait = 0.10f;
 
 	void Awake()
 	{
