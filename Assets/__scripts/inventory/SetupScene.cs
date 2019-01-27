@@ -35,8 +35,8 @@ public class SetupScene : BaseMonoBehaviour
 
 
 			var staticFlags = GameObjectUtility.GetStaticEditorFlags(go);
-			if (go.GetComponent<Pickable>() ||
-			    go.GetComponent<ObjetInteraction>() ||
+			if (go.GetComponent<BaseInteractable>() ||
+			    //go.GetComponent<ObjetInteraction>() ||
 			    go.GetComponent<Animator>())
 			{
 				staticFlags &= ~StaticEditorFlags.LightmapStatic;
