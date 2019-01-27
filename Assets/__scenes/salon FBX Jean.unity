@@ -997,12 +997,12 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: 114894851115859780, guid: cbf844b582681b34b9c90e24b0739cc7, type: 2}
     value: {fileID: 497917927}
-  - key: {fileID: 114771672967423840, guid: cbf844b582681b34b9c90e24b0739cc7, type: 2}
-    value: {fileID: 1777884033}
   - key: {fileID: 114992332126911832, guid: cbf844b582681b34b9c90e24b0739cc7, type: 2}
     value: {fileID: 1458708970}
   - key: {fileID: 114391105594444106, guid: cbf844b582681b34b9c90e24b0739cc7, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 114519419352340058, guid: cbf844b582681b34b9c90e24b0739cc7, type: 2}
+    value: {fileID: 1777884033}
   m_ExposedReferences:
     m_References: []
 --- !u!95 &497917927
@@ -3819,7 +3819,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1691299755}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: d0a6725c6e783524f8ca6681d1dd05cd, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 078e868574f90a24b89b4d40c6401ecd, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -5090,30 +5090,6 @@ PrefabInstance:
     - target: {fileID: 400116, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.319
-      objectReference: {fileID: 0}
-    - target: {fileID: 400268, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.7623044
-      objectReference: {fileID: 0}
-    - target: {fileID: 400268, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400268, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400270, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400270, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400270, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.92768043
       objectReference: {fileID: 0}
     - target: {fileID: 2300090, guid: 6dc16ab9d17c47e4eb342820ee0b51d6, type: 3}
       propertyPath: m_Materials.Array.data[0]
