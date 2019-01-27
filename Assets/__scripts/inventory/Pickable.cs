@@ -2,22 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Pickable : BaseInteractable
 {
+	public NavMeshAgent agent;
+
 	public enum State
 	{
 		Idle,
 		Dragging,
 		Falling,
 		GoingBack,
+		GoingBackNavMesh,
+		GoingBackRotate,
 	}
 	public State state;
 
-	public float distanceFromCamera = 5;
 	public float distanceFromCollision = 1;
-	public float moveSpeed = 1;
-	public bool debugHit;
 
 	public float maxDragTime = 3;
 	public float maxFallTime = 3;
@@ -28,12 +30,15 @@ public class Pickable : BaseInteractable
 	public float smoothSpeed2 = 0.1f;
 
 	public Vector3 initialPosition;
+	public Quaternion initialRotation;
 	public Vector3 lastScreenPosition;
 	public Vector3 targetPos;
 
 	[Serializable]
 	public struct DebugInfo
 	{
+		public bool drawHit;
+		public SerializableRaycastHit lastHit;
 		public Vector3 finalTargetPos;
 		public Vector3 currentPos;
 	}
@@ -52,21 +57,14 @@ public class Pickable : BaseInteractable
 				setState(State.Dragging);
 				break;
 			}
-
-			case State.Dragging:
-			case State.GoingBack:
-			{
-				break;
-			}
-
-			default: throw new ArgumentOutOfRangeException();
 		}
 	}
 
-	void enableCollider( bool _enabled, bool _dynamic = false )
+	void enableCollider( bool _collider, bool _dynamic = false, bool _agent = false )
 	{
-		collider.enabled = _enabled;
-		if (_enabled && _dynamic)
+		collider.enabled = _collider;
+
+		if (_collider && _dynamic)
 		{
 			rigidbody.isKinematic = false;
 			rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
@@ -76,7 +74,13 @@ public class Pickable : BaseInteractable
 			rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
 			rigidbody.isKinematic = true;
 		}
-		gameObject.layer = _enabled ? 0 : Physics.IgnoreRaycastLayer;
+
+		gameObject.layer = _collider ? 0 : Physics.IgnoreRaycastLayer;
+
+		if (agent)
+		{
+			agent.enabled = _agent;
+		}
 	}
 
 	void setState( State newState )
@@ -96,6 +100,7 @@ public class Pickable : BaseInteractable
 			{
 				enableCollider(false);
 				initialPosition = transform.position;
+				initialRotation = transform.rotation;
 				lastScreenPosition = camera.WorldToScreenPoint(initialPosition);
 				targetPos = transform.position;
 				break;
@@ -108,6 +113,19 @@ public class Pickable : BaseInteractable
 			}
 
 			case State.GoingBack:
+			{
+				resetAgent();
+				enableCollider(false, _agent: true);
+				break;
+			}
+
+			case State.GoingBackNavMesh:
+			{
+				enableCollider(true, _agent: true);
+				break;
+			}
+
+			case State.GoingBackRotate:
 			{
 				enableCollider(false);
 				break;
@@ -158,6 +176,18 @@ public class Pickable : BaseInteractable
 				break;
 			}
 
+			case State.GoingBackNavMesh:
+			{
+				updateAgent();
+				break;
+			}
+
+			case State.GoingBackRotate:
+			{
+				updateRotate();
+				break;
+			}
+
 			default: throw new ArgumentOutOfRangeException();
 		}
 	}
@@ -171,7 +201,7 @@ public class Pickable : BaseInteractable
 		if (Physics.Raycast(ray, out var hit))
 		{
 			finalTargetPos = hit.point - ray.direction * distanceFromCollision;
-			if (debugHit)
+			if (debug.drawHit)
 			{
 				Debug.DrawLine(hit.point, hit.point + hit.normal, Color.red, 0.1f);
 			}
@@ -188,30 +218,22 @@ public class Pickable : BaseInteractable
 		transform.position = currentPos;
 
 
-		lastHit = new SerializableRaycastHit(hit);
+		debug.lastHit = new SerializableRaycastHit(hit);
 		debug.finalTargetPos = finalTargetPos;
 		debug.currentPos = currentPos;
 	}
 
-	public SerializableRaycastHit lastHit;
-	/*void OnDrawGizmos()
+
+	void updateFalling() { }
+
+
+	void updateGoingBack()
 	{
-		if (!lastHit.collider)
+		if (tryAgent())
 		{
 			return;
 		}
 
-		var hit = lastHit;
-		Debug.DrawLine(hit.point, hit.normal, Color.red, 0.1f);
-	}*/
-
-
-	void updateFalling()
-	{
-	}
-
-	void updateGoingBack()
-	{
 		Vector3 currentPos = transform.position;
 		currentPos = Util.smooth(currentPos, initialPosition, smoothSpeed);
 
@@ -223,6 +245,62 @@ public class Pickable : BaseInteractable
 
 		transform.position = currentPos;
 	}
+
+
+	void resetAgent()
+	{
+		if (agent)
+		{
+			agent.enabled = true;
+			agent.ResetPath();
+		}
+	}
+	bool tryAgent()
+	{
+		if (!agent || agent.pathPending)
+		{
+			return false;
+		}
+
+		if (!agent.hasPath || agent.pathStatus != NavMeshPathStatus.PathComplete)
+		{
+			if (agent.SetDestination(initialPosition))
+			{
+				setState(State.GoingBackNavMesh);
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	void updateAgent()
+	{
+		if (agent.remainingDistance <= agent.stoppingDistance)
+		{
+			setState(State.GoingBackRotate);
+		}
+	}
+
+	void updateRotate()
+	{
+		Vector3 currentPos = transform.position;
+		currentPos = Util.smooth(currentPos, initialPosition, smoothSpeed);
+
+		Quaternion currentRot = transform.rotation;
+		currentRot = Quaternion.Slerp(currentRot, initialRotation, smoothSpeed);
+
+		if (Vector3.Distance(currentPos, initialPosition) < 0.1f &&
+		    Quaternion.Angle(currentRot, initialRotation) < 1f)
+		{
+			currentPos = initialPosition;
+			currentRot = initialRotation;
+			setState(State.Idle);
+		}
+
+		transform.position = currentPos;
+		transform.rotation = currentRot;
+	}
 }
 
 public static class Util
@@ -231,7 +309,8 @@ public static class Util
 	{
 		return current + (target - current) * smooth;
 	}
-	public static Vector3 smooth( Vector3 current, ref Vector3 midTarget, Vector3 finalTarget, float smooth1, float smooth2 )
+	public static Vector3 smooth( Vector3 current, ref Vector3 midTarget, Vector3 finalTarget,
+	                              float smooth1, float smooth2 )
 	{
 		midTarget = smooth(midTarget, finalTarget, smooth1);
 		return smooth(current, midTarget, smooth2);
