@@ -9,6 +9,7 @@ public class Pickable : BaseInteractable
 	{
 		Idle,
 		Dragging,
+		Falling,
 		GoingBack,
 	}
 	public State state;
@@ -19,6 +20,7 @@ public class Pickable : BaseInteractable
 	public bool debugHit;
 
 	public float maxDragTime = 3;
+	public float maxFallTime = 3;
 
 	public bool doubleSmooth;
 	public float smoothSpeed = 0.1f;
@@ -61,6 +63,13 @@ public class Pickable : BaseInteractable
 		}
 	}
 
+	void enableCollider( bool _enabled, bool _dynamic = false )
+	{
+		collider.enabled = _enabled;
+		rigidbody.isKinematic = !(_enabled && _dynamic);
+		gameObject.layer = _enabled ? 0 : Physics.IgnoreRaycastLayer;
+	}
+
 	void setState( State newState )
 	{
 		timer = 0;
@@ -70,24 +79,28 @@ public class Pickable : BaseInteractable
 		{
 			case State.Idle:
 			{
-				collider.enabled = true;
-				gameObject.layer = 0;
+				enableCollider(true);
 				break;
 			}
 
 			case State.Dragging:
 			{
-				collider.enabled = false;
-				gameObject.layer = Physics.IgnoreRaycastLayer;
-
+				enableCollider(false);
 				initialPosition = transform.position;
 				lastScreenPosition = camera.WorldToScreenPoint(initialPosition);
 				targetPos = transform.position;
 				break;
 			}
 
+			case State.Falling:
+			{
+				enableCollider(true, true);
+				break;
+			}
+
 			case State.GoingBack:
 			{
+				enableCollider(false);
 				break;
 			}
 
@@ -112,10 +125,21 @@ public class Pickable : BaseInteractable
 			{
 				if (timer > maxDragTime)
 				{
-					setState(State.GoingBack);
+					setState(State.Falling);
 					return;
 				}
 				updateDragging();
+				break;
+			}
+
+			case State.Falling:
+			{
+				if (timer > maxFallTime || rigidbody.IsSleeping())
+				{
+					setState(State.GoingBack);
+					return;
+				}
+				updateFalling();
 				break;
 			}
 
@@ -172,6 +196,10 @@ public class Pickable : BaseInteractable
 		Debug.DrawLine(hit.point, hit.normal, Color.red, 0.1f);
 	}*/
 
+
+	void updateFalling()
+	{
+	}
 
 	void updateGoingBack()
 	{

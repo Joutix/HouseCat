@@ -6,6 +6,7 @@ using UnityEngine.Playables;
 public class BaseInteractable : BaseMonoBehaviour
 {
 	public new Collider collider;
+	public new Rigidbody rigidbody;
 	public PlayableDirector director;
 
 	protected override void Awake()
@@ -25,6 +26,11 @@ public class BaseInteractable : BaseMonoBehaviour
 		if (!collider)
 		{
 			collider = GetComponent<Collider>();
+		}
+
+		if (!rigidbody)
+		{
+			rigidbody = GetComponent<Rigidbody>();
 		}
 
 		if (!director)
