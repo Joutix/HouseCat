@@ -505,6 +505,7 @@ GameObject:
   - component: {fileID: 2082685883}
   - component: {fileID: 2082685882}
   - component: {fileID: 2082685888}
+  - component: {fileID: 2082685889}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -636,6 +637,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 2082685884}
+  colliders:
+  - {fileID: 2082685884}
   rigidbody: {fileID: 2082685883}
   director: {fileID: 0}
   agent: {fileID: 2082685882}
@@ -662,3 +665,15 @@ MonoBehaviour:
       normal: {x: 0, y: 0, z: 0}
     finalTargetPos: {x: 0, y: 0, z: 0}
     currentPos: {x: 0, y: 0, z: 0}
+--- !u!114 &2082685889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082685881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc70aeac40364d04f84cf30795295470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

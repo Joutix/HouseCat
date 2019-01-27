@@ -20,11 +20,17 @@ public class SetupScene : BaseMonoBehaviour
 			{
 				Undo.AddComponent<MeshCollider>(renderer.gameObject);
 			}
+			if (!renderer.GetComponent<ColliderProxy>())
+			{
+				Undo.AddComponent<ColliderProxy>(renderer.gameObject);
+			}
+
 
 			var tex = renderer.sharedMaterial.mainTexture;
 			renderer.sharedMaterial = tex
 				                          ? new Material(defaultMaterial) { mainTexture = tex }
 				                          : defaultMaterial;
+
 
 			var staticFlags = GameObjectUtility.GetStaticEditorFlags(renderer.gameObject);
 			if (renderer.gameObject.GetComponent<Pickable>())

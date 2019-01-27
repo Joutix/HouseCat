@@ -4,8 +4,16 @@ using UnityEngine;
 using UnityEngine.Playables;
 
 public class BaseInteractable : BaseMonoBehaviour
+							  , IColliderListener
 {
+	/// <summary>
+	/// collider on self, for enabling/disabling raycast etc
+	/// </summary>
 	public new Collider collider;
+	/// <summary>
+	/// collider on self or external, for listening
+	/// </summary>
+	public Collider[] colliders;
 	public new Rigidbody rigidbody;
 	public PlayableDirector director;
 
@@ -28,6 +36,12 @@ public class BaseInteractable : BaseMonoBehaviour
 			collider = GetComponent<Collider>();
 		}
 
+		if (colliders == null || colliders.Length == 0)
+		{
+			colliders = GetComponentsInChildren<Collider>();
+		}
+		ColliderProxy.register(this, colliders);
+
 		if (!rigidbody)
 		{
 			rigidbody = GetComponent<Rigidbody>();
@@ -39,16 +53,14 @@ public class BaseInteractable : BaseMonoBehaviour
 		}
 	}
 
-	//protected void OnMouseUp()
-	//{
-	//	onInteract();
-	//}
-	protected void OnMouseUpAsButton()
+	void IColliderListener.onInteract( Collider _collider )
 	{
+		onInteract(_collider);
+	}
+	protected virtual void onInteract( Collider _collider )
+	{
+		Debug.Log($"onInteract {name} ({_collider.name})");
 		onInteract();
 	}
-	protected virtual void onInteract()
-	{
-		Debug.Log($"onInteract {name}");
-	}
+	protected virtual void onInteract() { }
 }
