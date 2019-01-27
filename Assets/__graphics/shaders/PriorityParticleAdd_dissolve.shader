@@ -1,4 +1,4 @@
-Shader "Particles/Priority Additive (dissolve)"
+Shader "Particles/Priority Alpha Blended (dissolve)"
 {
 Properties
 {
@@ -13,7 +13,8 @@ Properties
 Category
 {
 	Tags { "Queue"="Transparent+1" "IgnoreProjector"="True" "RenderType"="Transparent" }
-	Blend SrcAlpha One
+	//Blend SrcAlpha One
+	Blend SrcAlpha OneMinusSrcAlpha
 	AlphaTest Greater .01
 	ColorMask RGB
 	Cull Off Lighting Off ZWrite Off Fog { Color (0,0,0,0) }
@@ -100,6 +101,7 @@ Category
 				dissolve = smoothstep(vs_dissolve - _DissolveSmooth, vs_dissolve + _DissolveSmooth, dissolve);
 
 				float4 col = 2.0f * i.color * _TintColor * tex2D(_MainTex, i.texcoord);
+				col.a = col.r;
 				col.a *= dissolve;
 
 				return col;
