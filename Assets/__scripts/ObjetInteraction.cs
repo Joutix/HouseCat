@@ -32,6 +32,7 @@ public class ObjetInteraction : BaseInteractable
 		material.color = defaultColor;
 	}*/
 
+	public GameObject[] objectsToToggle;
 	protected override void onInteract( Collider _collider )
 	{
 		base.onInteract(_collider);
@@ -51,6 +52,14 @@ public class ObjetInteraction : BaseInteractable
 		if (conditionAfter)
 		{
 			conditionAfter.SetActive(true);
+		}
+
+		foreach (var objectToToggle in objectsToToggle)
+		{
+			if (objectToToggle)
+			{
+				objectToToggle.SetActive(!objectToToggle.activeSelf);
+			}
 		}
 	}
 }
