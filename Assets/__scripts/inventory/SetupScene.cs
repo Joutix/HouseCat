@@ -9,6 +9,7 @@ using UnityEditor;
 public class SetupScene : BaseMonoBehaviour
 {
 	public Material defaultMaterial;
+	public List<Shader> knownShaders;
 
 #if UNITY_EDITOR
 	[ContextMenu("Setup Scene")]
@@ -28,10 +29,19 @@ public class SetupScene : BaseMonoBehaviour
 			}
 
 
-			var tex = renderer.sharedMaterial.mainTexture;
-			renderer.sharedMaterial = tex
-				                          ? new Material(defaultMaterial) { mainTexture = tex }
-				                          : defaultMaterial;
+			var mat = renderer.sharedMaterial;
+			var prefab = PrefabUtility.GetCorrespondingObjectFromSource(renderer);
+			var prefabTex = prefab.sharedMaterial.mainTexture;
+			if (!knownShaders.Contains(mat.shader) ||
+			    (prefabTex && mat == defaultMaterial))
+			{
+				mat = new Material(defaultMaterial);
+			}
+			if (mat.mainTexture != prefabTex)
+			{
+				mat.mainTexture = prefabTex;
+			}
+			renderer.sharedMaterial = mat;
 
 
 			var staticFlags = GameObjectUtility.GetStaticEditorFlags(go);
