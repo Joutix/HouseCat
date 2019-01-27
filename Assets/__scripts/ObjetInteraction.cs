@@ -9,6 +9,7 @@ public class ObjetInteraction : BaseInteractable
 	bool active;
 	public GameObject conditionBefore;
 	public GameObject conditionAfter;
+	public Pickable unlockWithPickable;
 
 	/*public Color highlightColor = Color.green;
 	Color defaultColor;
@@ -38,6 +39,11 @@ public class ObjetInteraction : BaseInteractable
 		base.onInteract(_collider);
 
 		if (conditionBefore && !conditionBefore.activeInHierarchy)
+		{
+			return;
+		}
+
+		if (unlockWithPickable && Pickable.current != unlockWithPickable)
 		{
 			return;
 		}

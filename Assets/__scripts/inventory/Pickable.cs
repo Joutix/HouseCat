@@ -44,6 +44,7 @@ public class Pickable : BaseInteractable
 	}
 	public DebugInfo debug;
 
+	public static Pickable current;
 	float timer;
 	protected override void onInteract()
 	{
@@ -64,15 +65,18 @@ public class Pickable : BaseInteractable
 	{
 		collider.enabled = _collider;
 
-		if (_collider && _dynamic)
+		if (rigidbody)
 		{
-			rigidbody.isKinematic = false;
-			rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-		}
-		else
-		{
-			rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
-			rigidbody.isKinematic = true;
+			if (_collider && _dynamic)
+			{
+				rigidbody.isKinematic = false;
+				rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+			}
+			else
+			{
+				rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
+				rigidbody.isKinematic = true;
+			}
 		}
 
 		gameObject.layer = _collider ? 0 : Physics.IgnoreRaycastLayer;
@@ -86,6 +90,7 @@ public class Pickable : BaseInteractable
 	void setState( State newState )
 	{
 		timer = 0;
+		current = null;
 
 		state = newState;
 		switch (newState)
@@ -98,6 +103,7 @@ public class Pickable : BaseInteractable
 
 			case State.Dragging:
 			{
+				current = this;
 				enableCollider(false);
 				initialPosition = transform.position;
 				initialRotation = transform.rotation;
@@ -152,7 +158,7 @@ public class Pickable : BaseInteractable
 			{
 				if (timer > maxDragTime)
 				{
-					setState(State.Falling);
+					setState(rigidbody ? State.Falling : State.GoingBack);
 					return;
 				}
 				updateDragging();
