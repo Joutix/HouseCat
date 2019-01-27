@@ -182,6 +182,8 @@ ModelImporter:
     100352: wine bottle pivot
     100354: wine glass empty pivot
     100356: wine glass full pivot
+    100358: Light004
+    100360: vinyl
     400000: Box061
     400002: Box062
     400004: Box063
@@ -361,6 +363,8 @@ ModelImporter:
     400352: wine bottle pivot
     400354: wine glass empty pivot
     400356: wine glass full pivot
+    400358: Light004
+    400360: vinyl
     2000000: game view
     2000002: game camera 2
     2100000: No Name
@@ -378,6 +382,7 @@ ModelImporter:
     2100024: fire grid
     2100026: clock
     2100028: vase
+    2100030: room
     2300000: Box061
     2300002: Box062
     2300004: Box063
@@ -500,6 +505,9 @@ ModelImporter:
     2300238: wine bottle
     2300240: wine glass empty
     2300242: wine glass full
+    2300244: ceiling fan
+    2300246: plant
+    2300248: vinyl
     3300000: Box061
     3300002: Box062
     3300004: Box063
@@ -622,6 +630,9 @@ ModelImporter:
     3300238: wine bottle
     3300240: wine glass empty
     3300242: wine glass full
+    3300244: ceiling fan
+    3300246: plant
+    3300248: vinyl
     4300000: Box061
     4300002: Box062
     4300004: Box063
@@ -744,9 +755,13 @@ ModelImporter:
     4300238: box book 5
     4300240: vinyl 1
     4300242: vinyl 2
+    4300244: vinyl
+    4300246: ceiling fan
+    4300248: plant
     10800000: Light001
     10800002: Light002
     10800004: Light003
+    10800006: Light004
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
