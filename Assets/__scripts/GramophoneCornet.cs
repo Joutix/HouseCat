@@ -39,7 +39,7 @@ public class GramophoneCornet : BaseInteractable
 		}
 
 		var euler = transform.localEulerAngles;
-		euler.y = current * 360;
+		euler.z = current * 360;
 		transform.localEulerAngles = euler;
 	}
 }

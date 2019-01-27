@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class ObjetInteraction : MonoBehaviour
+public class ObjetInteraction : BaseInteractable
 {
-	public Color highlightColor = Color.green;
-	Color defaultColor;
 	public bool unefois; // L'animation doit être éxécuté une fois si true
-	bool active=false;
+	bool active;
 	public GameObject conditionBefore;
 	public GameObject conditionAfter;
-	public PlayableDirector animationObjet;
 
+	/*public Color highlightColor = Color.green;
+	Color defaultColor;
 	Material material;
-	void Awake()
+
+	protected override void Awake()
 	{
-		animationObjet = GetComponent<PlayableDirector>();
+		base.Awake();
+
 		material = GetComponent<Renderer>().material;
 		defaultColor = material.color;
 	}
@@ -29,28 +30,24 @@ public class ObjetInteraction : MonoBehaviour
 	void OnMouseExit()
 	{
 		material.color = defaultColor;
-	}
+	}*/
 
-	void OnMouseDown()
+	protected override void onInteract( Collider _collider )
 	{
+		base.onInteract(_collider);
+
 		if (conditionBefore && !conditionBefore.activeInHierarchy)
 		{
 			return;
 		}
-		if (unefois) { //Si on veut executé l'action qu'une fois
-			if (!active) // Si on l'a pas déjà éxécuté
-			{
-				animationObjet.Play();
-				active = true;
-				conditionAfter.SetActive(true);
-			}
-			else { return;  }
-		}
-		else { // Si c'est une action qui peut se répéter en boucle
-		animationObjet.Play();
 
-		conditionAfter.SetActive(true);
+		if (unefois && active) //Si on veut executer l'action qu'une fois
+		{
+			return; // déjà executé
 		}
+
+		active = true;
+		director.Play();
+		conditionAfter.SetActive(true);
 	}
 }
-

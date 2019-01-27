@@ -4,43 +4,25 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-public class ScriptTableau : MonoBehaviour
+public class ScriptTableau : BaseInteractable
 {
-	public Color highlightColor = Color.green;
-	Color defaultColor;
 	int nbclick = 0;
 	public bool looping;
-	public PlayableDirector playableDirector;
 	public TimelineAsset[] listTimeline;
 	public GameObject conditionBefore;
 
-	Material material;
-	void Awake()
+	protected override void onInteract( Collider _collider )
 	{
+		base.onInteract(_collider);
 
-		material = GetComponent<Renderer>().material;
-		defaultColor = material.color;
-	}
-
-	void OnMouseEnter()
-	{
-		material.color = highlightColor;
-	}
-
-	void OnMouseExit()
-	{
-		material.color = defaultColor;
-	}
-
-	void OnMouseDown()
-	{
 		if (conditionBefore && !conditionBefore.activeInHierarchy)
 		{
 			return;
 		}
+
 		if (nbclick >= listTimeline.Length)
 		{
-			if (looping==true)
+			if (looping)
 			{
 				nbclick = 0;
 			}
@@ -49,7 +31,8 @@ public class ScriptTableau : MonoBehaviour
 				return;
 			}
 		}
-		playableDirector.Play(listTimeline[nbclick]);
+
+		director.Play(listTimeline[nbclick]);
 		nbclick++;
 	}
 }

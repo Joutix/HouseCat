@@ -29,8 +29,18 @@ public class ColliderProxy : MonoBehaviour
 
 	public static void register( IColliderListener _listener, IList<Collider> _colliders )
 	{
+		if (_colliders == null)
+		{
+			return;
+		}
+
 		foreach (var collider in _colliders)
 		{
+			if (!collider)
+			{
+				continue;
+			}
+
 			var proxy = collider.GetComponent<ColliderProxy>();
 			if (!proxy)
 			{
